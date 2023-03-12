@@ -3,7 +3,7 @@
 
 
 frappe.ui.form.on("Meeting", {
-	send_invitation: function(frm) {
+	send_emails: function(frm) {
 		if (frm.doc.status==="Planned") {
 			frappe.call({
 				method: "meeting.api.send_invitation_emails",

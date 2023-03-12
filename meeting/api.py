@@ -1,5 +1,6 @@
 import frappe
 from frappe import _
+from frappe.utils import nowdate, add_days
 
 @frappe.whitelist()
 def send_invitation_emails(meeting):
@@ -10,11 +11,11 @@ def send_invitation_emails(meeting):
 		frappe.sendmail(
 			recipients=[d.attendee for d in meeting.attendees],
 			sender=frappe.session.user,
-			subject=meeting.subject,
+			subject=meeting.title,
 			message=meeting.invitation_message,
 			reference_doctype=meeting.doctype,
 			reference_name=meeting.name,
-			as_bulk=True
+			# as_bulk=True
 		)
 
 		meeting.status = "Invitation Sent"
@@ -63,6 +64,8 @@ def make_orientation_meeting(doc, method):
 	meeting.insert()
 
 	frappe.msgprint(_("Orientation meeting created"))
+
+
 
 
 

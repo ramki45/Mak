@@ -8,7 +8,7 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "subject",
+  "title",
   "date",
   "status",
   "column_break_sjwu",
@@ -20,7 +20,7 @@
   "attendees",
   "invitation_section",
   "invitation_message",
-  "send_invitation",
+  "send_emails",
   "minutes",
   "minute"
  ],
@@ -47,11 +47,6 @@
    "fieldtype": "Select",
    "label": "Status",
    "options": "Planned\nInvitation Sent\nIn Progress\nCompleted\nCancelled"
-  },
-  {
-   "fieldname": "subject",
-   "fieldtype": "Data",
-   "label": "Title"
   },
   {
    "fieldname": "agenda",
@@ -105,14 +100,20 @@
    "label": "Invitation Message"
   },
   {
-   "fieldname": "send_invitation",
+   "depends_on": "eval:doc.status===\"Planned\";",
+   "fieldname": "send_emails",
    "fieldtype": "Button",
    "label": "Send Invitation"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-03-10 12:49:50.561473",
+ "modified": "2023-03-12 13:21:08.730675",
  "modified_by": "Administrator",
  "module": "Meeting Module",
  "name": "Meeting",
